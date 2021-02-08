@@ -70,14 +70,14 @@ namespace QuanLyQuanCafe
             this.thôngTinTàiKhoảnToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1253, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1298, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // adminToolStripMenuItem
             // 
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.adminToolStripMenuItem.Text = "Admin";
             this.adminToolStripMenuItem.Click += new System.EventHandler(this.adminToolStripMenuItem_Click);
             // 
@@ -87,7 +87,7 @@ namespace QuanLyQuanCafe
             this.thôngTinCáNhânToolStripMenuItem,
             this.đăngXuấtToolStripMenuItem});
             this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(151, 26);
+            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(151, 24);
             this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
             // 
             // thôngTinCáNhânToolStripMenuItem
@@ -109,7 +109,7 @@ namespace QuanLyQuanCafe
             this.panel2.Controls.Add(this.lsvBill);
             this.panel2.Location = new System.Drawing.Point(772, 151);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(474, 388);
+            this.panel2.Size = new System.Drawing.Size(514, 388);
             this.panel2.TabIndex = 2;
             // 
             // lsvBill
@@ -123,7 +123,7 @@ namespace QuanLyQuanCafe
             this.lsvBill.HideSelection = false;
             this.lsvBill.Location = new System.Drawing.Point(7, 0);
             this.lsvBill.Name = "lsvBill";
-            this.lsvBill.Size = new System.Drawing.Size(467, 382);
+            this.lsvBill.Size = new System.Drawing.Size(507, 382);
             this.lsvBill.TabIndex = 0;
             this.lsvBill.UseCompatibleStateImageBehavior = false;
             this.lsvBill.View = System.Windows.Forms.View.Details;
@@ -131,18 +131,22 @@ namespace QuanLyQuanCafe
             // columnHeader1
             // 
             this.columnHeader1.Text = "Tên món";
+            this.columnHeader1.Width = 141;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Số lượng";
+            this.columnHeader2.Width = 69;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Đơn giá";
+            this.columnHeader3.Width = 90;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Thành tiền";
+            this.columnHeader4.Width = 110;
             // 
             // panel3
             // 
@@ -154,17 +158,17 @@ namespace QuanLyQuanCafe
             this.panel3.Controls.Add(this.btnCheckOut);
             this.panel3.Location = new System.Drawing.Point(772, 546);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(474, 142);
+            this.panel3.Size = new System.Drawing.Size(514, 142);
             this.panel3.TabIndex = 3;
             // 
             // txbTotalPrice
             // 
             this.txbTotalPrice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbTotalPrice.ForeColor = System.Drawing.Color.Maroon;
-            this.txbTotalPrice.Location = new System.Drawing.Point(228, 36);
+            this.txbTotalPrice.Location = new System.Drawing.Point(238, 36);
             this.txbTotalPrice.Name = "txbTotalPrice";
             this.txbTotalPrice.ReadOnly = true;
-            this.txbTotalPrice.Size = new System.Drawing.Size(145, 30);
+            this.txbTotalPrice.Size = new System.Drawing.Size(132, 30);
             this.txbTotalPrice.TabIndex = 7;
             this.txbTotalPrice.Text = "0";
             this.txbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -185,6 +189,7 @@ namespace QuanLyQuanCafe
             this.btnSwitchTable.TabIndex = 6;
             this.btnSwitchTable.Text = "Chuyển bàn";
             this.btnSwitchTable.UseVisualStyleBackColor = true;
+            this.btnSwitchTable.Click += new System.EventHandler(this.btnSwitchTable_Click);
             // 
             // nmDiscount
             // 
@@ -205,12 +210,13 @@ namespace QuanLyQuanCafe
             // 
             // btnCheckOut
             // 
-            this.btnCheckOut.Location = new System.Drawing.Point(386, 36);
+            this.btnCheckOut.Location = new System.Drawing.Point(391, 36);
             this.btnCheckOut.Name = "btnCheckOut";
-            this.btnCheckOut.Size = new System.Drawing.Size(88, 69);
+            this.btnCheckOut.Size = new System.Drawing.Size(108, 69);
             this.btnCheckOut.TabIndex = 4;
             this.btnCheckOut.Text = "Thanh toán";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // panel4
             // 
@@ -220,7 +226,7 @@ namespace QuanLyQuanCafe
             this.panel4.Controls.Add(this.cbCategory);
             this.panel4.Location = new System.Drawing.Point(772, 49);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(474, 96);
+            this.panel4.Size = new System.Drawing.Size(514, 96);
             this.panel4.TabIndex = 4;
             // 
             // nmFoodCount
@@ -280,7 +286,7 @@ namespace QuanLyQuanCafe
             this.AcceptButton = this.btnCheckOut;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1253, 706);
+            this.ClientSize = new System.Drawing.Size(1298, 706);
             this.Controls.Add(this.flpTable);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);

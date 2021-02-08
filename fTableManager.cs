@@ -23,6 +23,7 @@ namespace QuanLyQuanCafe
 
             LoadTable();
             LoadCategory();
+            LoadComboboxTable(cbSwitchTable);
         }
 
         #region Methods
@@ -43,6 +44,8 @@ namespace QuanLyQuanCafe
 
         void LoadTable()
         {
+            flpTable.Controls.Clear();
+
             List<Table> tableList = TableDAO.Instance.LoadTableList();
 
             foreach (Table item in tableList)
@@ -87,7 +90,13 @@ namespace QuanLyQuanCafe
             //Thread.CurrentThread.CurrentCulture = culture;
 
             txbTotalPrice.Text = totalPrice.ToString("c",culture);
+            
+        }
 
+        void LoadComboboxTable(ComboBox cb)
+        {
+            cb.DataSource = TableDAO.Instance.LoadTableList();
+            cb.DisplayMember = "Name";
         }
         #endregion
 
@@ -149,6 +158,44 @@ namespace QuanLyQuanCafe
                 BillInfoDAO.Instance.InsertBillInfo(idBill,foodID,count);
             }
             ShowBill(table.ID);
+            LoadTable();
+        }
+
+        private void btnCheckOut_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+
+            int idBill = BillDAO.Instance.GetUncheckBillIDByTableID(table.ID);
+
+            int discount = (int)nmDiscount.Value;
+
+            double totalPrice = Convert.ToDouble(txbTotalPrice.Text.Split(',')[0]) ;
+            double finalTotalPrice = totalPrice - (totalPrice / 100) * discount;
+
+            if(idBill != -1 )
+            {
+                if(MessageBox.Show(string.Format("Bạn có chắc thanh toán hóa đơn cho {0} \nDiscount {1}% \nTổng tiền = {2}.000đ ", table.Name,discount,finalTotalPrice),"Thông báo",MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK )
+                {
+                    BillDAO.Instance.CheckOut(idBill,discount);
+
+                    ShowBill(table.ID);
+
+                    LoadTable(); 
+                }                  
+            }
+        }
+        private void btnSwitchTable_Click(object sender, EventArgs e)
+        {
+
+            int id1 = (lsvBill.Tag as Table).ID;
+
+            int id2 = (cbSwitchTable.SelectedItem as Table).ID;
+            if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển từ {0} qua {1}", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name), "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+            {
+                TableDAO.Instance.SwitchTable(id1, id2);
+
+                LoadTable();
+            }
         }
         #endregion
     }
