@@ -176,7 +176,7 @@ namespace QuanLyQuanCafe
             {
                 if(MessageBox.Show(string.Format("Bạn có chắc thanh toán hóa đơn cho {0} \nDiscount {1}% \nTổng tiền = {2}.000đ ", table.Name,discount,finalTotalPrice),"Thông báo",MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK )
                 {
-                    BillDAO.Instance.CheckOut(idBill,discount);
+                    BillDAO.Instance.CheckOut(idBill,discount,(float)finalTotalPrice);
 
                     ShowBill(table.ID);
 
@@ -193,7 +193,7 @@ namespace QuanLyQuanCafe
             if (MessageBox.Show(string.Format("Bạn có thật sự muốn chuyển từ {0} qua {1}", (lsvBill.Tag as Table).Name, (cbSwitchTable.SelectedItem as Table).Name), "Thông báo", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
             {
                 TableDAO.Instance.SwitchTable(id1, id2);
-
+   
                 LoadTable();
             }
         }
