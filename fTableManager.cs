@@ -17,9 +17,19 @@ namespace QuanLyQuanCafe
 {
     public partial class fTableManager : Form
     {
-        public fTableManager()
+        private Account loginAccount;
+
+        public Account LoginAccount 
+        {
+            get => loginAccount; 
+            set { loginAccount = value; ChangeAccount(loginAccount.Type); }
+        }
+
+        public fTableManager(Account acc)
         {
             InitializeComponent();
+
+            this.LoginAccount = acc;
 
             LoadTable();
             LoadCategory();
@@ -28,6 +38,12 @@ namespace QuanLyQuanCafe
 
         #region Methods
 
+        void ChangeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1;
+            thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")"; 
+        }
+
         void LoadCategory()
         {
             List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
@@ -35,7 +51,7 @@ namespace QuanLyQuanCafe
             cbCategory.DisplayMember = "Name";
         }
 
-        void LoadFoodListByCategoryID(int id)
+        void LoadFoodListByCategoryID(int id)                                    
         {
             List<Food> listFood = FoodDAO.Instance.GetFoodByCategoryID(id);
             cbFood.DataSource = listFood;
@@ -75,7 +91,7 @@ namespace QuanLyQuanCafe
             lsvBill.Items.Clear();
             List<DTO.Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
 
-            float totalPrice = 0;
+            double totalPrice = 0;
             foreach (DTO.Menu item in listBillInfo)
             {
                 ListViewItem lsvItem = new ListViewItem(item.FoodName.ToString());
@@ -87,7 +103,7 @@ namespace QuanLyQuanCafe
             }
             CultureInfo culture = new CultureInfo("vi-VN");
 
-            //Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
 
             txbTotalPrice.Text = totalPrice.ToString("c",culture);
             
@@ -116,8 +132,14 @@ namespace QuanLyQuanCafe
 
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccountProfile f = new fAccountProfile();
+            fAccountProfile f = new fAccountProfile(LoginAccount);
+            f.UpdateAccount += F_UpdateAccount;
             f.ShowDialog();
+        }
+
+        private void F_UpdateAccount(object sender, AccountEvent e)
+        {
+            thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản (" + e.Acc.DisplayName + ")";
         }
 
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -169,12 +191,12 @@ namespace QuanLyQuanCafe
 
             int discount = (int)nmDiscount.Value;
 
-            double totalPrice = Convert.ToDouble(txbTotalPrice.Text.Split(',')[0]) ;
+            double totalPrice = Convert.ToDouble(txbTotalPrice.Text.Split(',')[0]);
             double finalTotalPrice = totalPrice - (totalPrice / 100) * discount;
 
-            if(idBill != -1 )
+            if (idBill != -1 )
             {
-                if(MessageBox.Show(string.Format("Bạn có chắc thanh toán hóa đơn cho {0} \nDiscount {1}% \nTổng tiền = {2}.000đ ", table.Name,discount,finalTotalPrice),"Thông báo",MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK )
+                if(MessageBox.Show(string.Format("Bạn có chắc thanh toán hóa đơn cho {0} \nDiscount {1}% \nTổng tiền = {2}đ", table.Name,discount,finalTotalPrice),"Thông báo",MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK )
                 {
                     BillDAO.Instance.CheckOut(idBill,discount,(float)finalTotalPrice);
 
