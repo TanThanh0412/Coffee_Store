@@ -99,7 +99,6 @@ namespace QuanLyQuanCafe
             this.panel23 = new System.Windows.Forms.Panel();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.cbAccountType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
             this.txbDisplayName = new System.Windows.Forms.TextBox();
@@ -114,6 +113,7 @@ namespace QuanLyQuanCafe
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
+            this.txbAccountType = new System.Windows.Forms.TextBox();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -271,6 +271,7 @@ namespace QuanLyQuanCafe
             this.btnSearchFood.TabIndex = 4;
             this.btnSearchFood.Text = "Tìm";
             this.btnSearchFood.UseVisualStyleBackColor = true;
+            this.btnSearchFood.Click += new System.EventHandler(this.btnSearchFood_Click);
             // 
             // panel5
             // 
@@ -802,20 +803,12 @@ namespace QuanLyQuanCafe
             // 
             // panel25
             // 
-            this.panel25.Controls.Add(this.cbAccountType);
+            this.panel25.Controls.Add(this.txbAccountType);
             this.panel25.Controls.Add(this.label11);
             this.panel25.Location = new System.Drawing.Point(19, 140);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(601, 57);
             this.panel25.TabIndex = 3;
-            // 
-            // cbAccountType
-            // 
-            this.cbAccountType.FormattingEnabled = true;
-            this.cbAccountType.Location = new System.Drawing.Point(196, 17);
-            this.cbAccountType.Name = "cbAccountType";
-            this.cbAccountType.Size = new System.Drawing.Size(379, 24);
-            this.cbAccountType.TabIndex = 1;
             // 
             // label11
             // 
@@ -942,6 +935,13 @@ namespace QuanLyQuanCafe
             this.dtgvAccount.RowTemplate.Height = 24;
             this.dtgvAccount.Size = new System.Drawing.Size(672, 638);
             this.dtgvAccount.TabIndex = 0;
+            // 
+            // txbAccountType
+            // 
+            this.txbAccountType.Location = new System.Drawing.Point(196, 14);
+            this.txbAccountType.Name = "txbAccountType";
+            this.txbAccountType.Size = new System.Drawing.Size(379, 22);
+            this.txbAccountType.TabIndex = 2;
             // 
             // fAdmin
             // 
@@ -1079,7 +1079,6 @@ namespace QuanLyQuanCafe
         private System.Windows.Forms.ComboBox cbTableStatus;
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.ComboBox cbAccountType;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.TextBox txbDisplayName;
@@ -1095,5 +1094,6 @@ namespace QuanLyQuanCafe
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Button btnResetPass;
+        private System.Windows.Forms.TextBox txbAccountType;
     }
 }

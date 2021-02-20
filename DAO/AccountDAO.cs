@@ -28,6 +28,11 @@ namespace QuanLyQuanCafe.DAO
             return result.Rows.Count > 0;
         }
 
+        public DataTable GetListAccount()
+        {
+            return DataProvider.Instance.ExecuteQuery("SELECT UserName, DisplayName, Type FROM dbo.Account");
+        }
+
         public bool UpdateAccount(string userName, string displayName, string pass , string newPass)
         {
             int result = DataProvider.Instance.ExecuteNonQuery("exec USP_UpdateAccount @userName , @displayName , @password , @newPassword ", new object[] { userName, displayName, pass, newPass });
@@ -44,20 +49,6 @@ namespace QuanLyQuanCafe.DAO
                 return new Account(item);
             }
             return null;
-        }
-
-        public List<Account> GetListAccount()
-        {
-            List<Account> list = new List<Account>();
-            string query = "SELECT * FROM account";
-
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach (DataRow item in data.Rows)
-            {
-                Account account = new Account(item);
-                list.Add(account);
-            }
-            return list;
         }
     }
 }
