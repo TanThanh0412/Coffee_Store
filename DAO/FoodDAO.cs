@@ -82,13 +82,14 @@ namespace QuanLyQuanCafe.DAO
             return result > 0;
         }
 
-         public bool UpdateFood(int idFood, string name, int id, float price)
+        public bool UpdateFood(int idFood, string name, int id, float price)
         {
             string query = string.Format("UPDATE dbo.Food SET name = N'{0}', idCategory = {1}, Price = {2} WHERE id = {3}", name, id, price, idFood);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
 
             return result > 0;
         }
+        
         public bool DeleteFood(int idFood)
         {
             BillInfoDAO.Instance.DeleteBillInfoByFoodID(idFood);

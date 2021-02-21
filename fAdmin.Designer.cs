@@ -113,7 +113,7 @@ namespace QuanLyQuanCafe
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
             this.dtgvAccount = new System.Windows.Forms.DataGridView();
-            this.txbAccountType = new System.Windows.Forms.TextBox();
+            this.nmAccount = new System.Windows.Forms.NumericUpDown();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -153,6 +153,7 @@ namespace QuanLyQuanCafe
             this.panel28.SuspendLayout();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmAccount)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAdmin
@@ -800,10 +801,11 @@ namespace QuanLyQuanCafe
             this.btnResetPass.TabIndex = 4;
             this.btnResetPass.Text = "Đặt lại mật khẩu";
             this.btnResetPass.UseVisualStyleBackColor = true;
+            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
             // panel25
             // 
-            this.panel25.Controls.Add(this.txbAccountType);
+            this.panel25.Controls.Add(this.nmAccount);
             this.panel25.Controls.Add(this.label11);
             this.panel25.Location = new System.Drawing.Point(19, 140);
             this.panel25.Name = "panel25";
@@ -857,7 +859,6 @@ namespace QuanLyQuanCafe
             // 
             this.txbUserName.Location = new System.Drawing.Point(196, 17);
             this.txbUserName.Name = "txbUserName";
-            this.txbUserName.ReadOnly = true;
             this.txbUserName.Size = new System.Drawing.Size(379, 22);
             this.txbUserName.TabIndex = 1;
             // 
@@ -899,6 +900,7 @@ namespace QuanLyQuanCafe
             this.btnEditAccount.TabIndex = 2;
             this.btnEditAccount.Text = "Sửa";
             this.btnEditAccount.UseVisualStyleBackColor = true;
+            this.btnEditAccount.Click += new System.EventHandler(this.btnEditAccount_Click);
             // 
             // btnDeleteAccount
             // 
@@ -908,6 +910,7 @@ namespace QuanLyQuanCafe
             this.btnDeleteAccount.TabIndex = 1;
             this.btnDeleteAccount.Text = "Xóa";
             this.btnDeleteAccount.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
             // 
             // btnAddAccount
             // 
@@ -917,6 +920,7 @@ namespace QuanLyQuanCafe
             this.btnAddAccount.TabIndex = 0;
             this.btnAddAccount.Text = "Thêm";
             this.btnAddAccount.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
             // panel29
             // 
@@ -936,12 +940,17 @@ namespace QuanLyQuanCafe
             this.dtgvAccount.Size = new System.Drawing.Size(672, 638);
             this.dtgvAccount.TabIndex = 0;
             // 
-            // txbAccountType
+            // nmAccount
             // 
-            this.txbAccountType.Location = new System.Drawing.Point(196, 14);
-            this.txbAccountType.Name = "txbAccountType";
-            this.txbAccountType.Size = new System.Drawing.Size(379, 22);
-            this.txbAccountType.TabIndex = 2;
+            this.nmAccount.Location = new System.Drawing.Point(196, 17);
+            this.nmAccount.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmAccount.Name = "nmAccount";
+            this.nmAccount.Size = new System.Drawing.Size(42, 22);
+            this.nmAccount.TabIndex = 1;
             // 
             // fAdmin
             // 
@@ -1005,6 +1014,7 @@ namespace QuanLyQuanCafe
             this.panel28.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmAccount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1094,6 +1104,6 @@ namespace QuanLyQuanCafe
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.DataGridView dtgvAccount;
         private System.Windows.Forms.Button btnResetPass;
-        private System.Windows.Forms.TextBox txbAccountType;
+        private System.Windows.Forms.NumericUpDown nmAccount;
     }
 }
